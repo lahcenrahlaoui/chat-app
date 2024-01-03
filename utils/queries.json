@@ -1,0 +1,13 @@
+{
+    "insert": {
+        "messages": "INSERT INTO messages(content , user_sender , user_reciever) VALUES(?,?,?)",
+        "users": "INSERT INTO users( name,  email ,  password ) VALUES(?,?, ?)"
+    },
+    "select": {
+        "messages": "SELECT * FROM messages ",
+        "users": "SELECT * FROM users"
+    }
+}
+ 
+
+ 
