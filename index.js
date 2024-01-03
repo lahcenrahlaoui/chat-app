@@ -4,10 +4,13 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 //files imports
-const userRoute = require("./routes/userRoute.js");
+const authRoute = require("./routes/authRoute.js");
+// const userDataRoute = require("./routes/userDataRoute.js");
+
 const messagesRoute = require("./routes/messagesRoute.js");
-const discussionsRoute = require("./routes/discussionsRoute.js");
-const userDataRoute = require("./routes/userDataRoute.js");
+
+const chatsRoute = require("./routes/chatsRoute.js");
+
 // create the app
 const app = express();
 
@@ -17,9 +20,11 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // calling routes
-app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
+// app.use("/api/user-data", userDataRoute);
+
 app.use("/api/messages", messagesRoute);
-app.use("/api/discussion", discussionsRoute);
-app.use("/api/user-data", userDataRoute);
+
+app.use("/api/chats", chatsRoute);
 
 app.listen(5000, () => console.log("listening on port"));

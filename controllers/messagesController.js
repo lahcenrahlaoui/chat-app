@@ -1,18 +1,18 @@
-const fetchData = (req, res, next) => {
+const fetchMessages = (req, res, next) => {
     res.send({
         data: res.locals.messages,
     });
 };
 
-const postData = (req, res, next) => {
+const postMessage = (req, res, next) => {
     res.send({
-        data: res.locals.messages,
+        data: res.locals.message,
     });
 };
 
 module.exports = {
-    fetchData,
-    postData,
+    fetchMessages,
+    postMessage,
 };
 
 ////////////////////////////////////////////////

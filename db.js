@@ -21,8 +21,19 @@ db.serialize(() => {
                         id INTEGER PRIMARY KEY ,
                         content ,
                         user_sender ,
-                        user_reciever)`;
+                        user_reciever
+                        
+                        )`;
     db.run(createTableQuerym);
+
+    // message table
+    let createTableQueryc;
+    createTableQueryc = `CREATE TABLE IF NOT EXISTS chats(
+                        id INTEGER PRIMARY KEY ,
+                        user1 ,
+                        user2 
+                )`;
+    db.run(createTableQueryc);
 });
 
 module.exports = db;

@@ -1,27 +1,65 @@
 const express = require("express");
 
 const {
-    fetchDataHelper,
-    fetchOneHelper,
-    postDataHelper,
-} = require("../utils/helpers.js");
-
-const table = "messages";
-const { fetchData, postData } = require("../controllers/messagesController.js");
+    fetchMessages,
+    postMessage,
+} = require("../controllers/messagesController.js");
 
 const router = express.Router();
 
 // // connect to db
 const db = require("../db.js");
 
-router.get("/", fetchDataHelper(db, table), fetchData);
+const fetchDataHelper = (req, res, next) => {
+    let query = ` SELECT * FROM messages `;
 
-router.post(
-    "/",
-    postDataHelper(db, table),
-    fetchOneHelper(db, table),
-    postData
-);
+    db.all(query, [], function (err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        res.locals.messages = rows;
+
+        next();
+    });
+};
+
+const fetchOneHelper = (req, res, next) => {
+    let sql = `SELECT * FROM messages WHERE id = ${res.locals.message.id}`;
+
+    db.all(sql, [], function (err, rows) {
+        if (err) {
+            return next(err);
+        }
+
+        res.locals.message = rows[0];
+
+        next();
+    });
+};
+
+// // insert data
+const postDataHelper = (req, res, next) => {
+    let query = `INSERT INTO messages(content , user_sender , user_reciever) VALUES(?,?,?)`;
+
+    const data = Object.values(req.body);
+
+    db.run(query, data, function (err) {
+        if (err) {
+            return console.log(err.message);
+        }
+        res.locals.message = {};
+        res.locals.message.id = this.lastID;
+
+        next();
+    });
+};
+
+router.get("/", fetchDataHelper, fetchMessages);
+
+// router.get("/:id", fetchDataHelper, fetchData);
+
+router.post("/", postDataHelper, fetchOneHelper, postMessage);
 
 const deleteData = (req, res, next) => {
     // delete

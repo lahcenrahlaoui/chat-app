@@ -1,41 +1,67 @@
 const express = require("express");
 
-const {
-    fetchDataHelper,
-    fetchOneHelper,
-    postDataHelper,
-} = require("../utils/helpers.js");
 const router = express.Router();
 
 const table = "users";
 // // connect to db.query
 const db = require("../db.js");
 
-const {
-    fetchData,
-    postData,
-    signin,
-    signup,
-} = require("../controllers/userController.js");
+const { signin, signup } = require("../controllers/authController.js");
 
-router.get("/", fetchDataHelper(db, table), fetchData);
+// fetch all users
+const fetchDataHelper = (req, res, next) => {
+    console.log("fetchDataHelper from ", tableName);
+    let query = queries.select[tableName];
 
-router.post(
-    "/",
-    postDataHelper(db, table),
-    fetchOneHelper(db, table),
-    postData
-);
+    db.all(query, [], function (err, rows) {
+        if (err) {
+            return next(err);
+        }
 
-// router.post("/auth/signin", signin(db, table));
+        res.locals[tableName] = rows;
 
+        console.log(res.locals[tableName]);
 
-router.post(
-    "/auth/signup",
-    postDataHelper(db, table),
-    fetchOneHelper(db, table),
-    signup
-);
+        next();
+    });
+};
+
+// fetch the inserted row
+const fetchOneHelper = (req, res, next) => {
+    let sql = `SELECT * FROM users WHERE id = ${res.locals.user.id}`;
+
+    db.all(sql, [], function (err, rows) {
+        if (err) {
+            return next(err);
+        }
+        console.log(rows);
+        res.locals.user = rows[0];
+        next();
+    });
+};
+
+// // insert data
+const postDataHelper = (req, res, next) => {
+    let query = `INSERT INTO users( name,  email ,  password ) VALUES(?,?, ?)`;
+
+    const data = Object.values(req.body);
+
+    db.run(query, data, function (err) {
+        if (err) {
+            return console.log(err.message);
+        }
+        res.locals.user = {};
+        res.locals.user.id = this.lastID;
+
+        next();
+    });
+};
+
+// router.post("/", postDataHelper, fetchOneHelper, postData);
+
+router.post("/signin", postDataHelper, fetchOneHelper, signin);
+
+router.post("/signup", postDataHelper, fetchOneHelper, signup);
 
 module.exports = router;
 

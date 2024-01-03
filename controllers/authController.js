@@ -7,33 +7,38 @@ const createToken = (id) => {
     return jwt.sign({ id }, jwtKey, { expiresIn: "2d" });
 };
 
-
-
 const signin = async (req, res) => {
     res.send({
         user: "user",
     });
 };
+
 const signup = async (req, res) => {
-    console.log("res.locals.users");
-    console.log(res.locals.users[0].id);
-    const token = createToken(res.locals.users[0].id);
+    const token = createToken(res.locals.user.id);
 
     const user = {
-        name: res.locals.users[0].first_name, 
-        last_name: res.locals.users[0].last_name,
-        email: res.locals.users[0].email,
-        id: res.locals.users[0].id,
-        token
-    }
+        id: res.locals.user.id,
+        name: res.locals.user.name,
+        email: res.locals.user.email,
+        token,
+    };
     try {
-        res.send({
-            user: res.locals.users[0],
-            token
-        });
+        res.send({ user });
     } catch (err) {}
 };
 
+
+
+
+
+////////////////////////////
+////////////////////////////
+////////////////////////////
+////////////////////////////
+////////////////////////////
+////////////////////////////
+////////////////////////////
+////////////////////////////
 const fetchData = (req, res, next) => {
     res.send({
         data: res.locals.users,
