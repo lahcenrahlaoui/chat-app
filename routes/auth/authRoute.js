@@ -4,13 +4,14 @@ const router = express.Router();
 
 const table = "users";
 // // connect to db.query
-const db = require("../db.js");
+const db = require("../../db.js");
 
-const { signin, signup } = require("../controllers/authController.js");
+const { signin, signup } = require("../../controllers/auth/authController.js");
 
 // fetch all users
 const fetchDataHelper = (req, res, next) => {
-    console.log("fetchDataHelper from ", tableName);
+  
+    
     let query = queries.select[tableName];
 
     db.all(query, [], function (err, rows) {

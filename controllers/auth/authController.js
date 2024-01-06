@@ -1,7 +1,5 @@
 const jwt = require("jsonwebtoken");
 
-const { postDataHelper, fetchOneHelper } = require("../utils/helpers");
-
 const jwtKey = "fioq2euyfiouqwyeofuiywefqef";
 const createToken = (id) => {
     return jwt.sign({ id }, jwtKey, { expiresIn: "2d" });
@@ -26,10 +24,6 @@ const signup = async (req, res) => {
         res.send({ user });
     } catch (err) {}
 };
-
-
-
-
 
 ////////////////////////////
 ////////////////////////////

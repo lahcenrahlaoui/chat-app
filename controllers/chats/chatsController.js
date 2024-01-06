@@ -4,13 +4,6 @@ const fetchChats = (req, res, next) => {
     });
 };
 
-const postChat = (req, res, next) => {
-    res.send({
-        data: res.locals.chat,
-    });
-};
-
 module.exports = {
     fetchChats,
-    postChat,
 };
