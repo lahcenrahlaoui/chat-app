@@ -17,7 +17,7 @@ const findUser = async (req, res) => {
     const { phoneNumber } = req.body;
 
     try {
-        const user = await User.find({ phoneNumber: user });
+        const user = await User.find({ phoneNumber: phoneNumber });
 
         console.log(user);
         res.send({ user });
