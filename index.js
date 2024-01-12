@@ -7,6 +7,7 @@ const cors = require("cors");
 
 //files imports
 const messagesRoute = require("./routes/messagesRoute.js");
+const userRoute = require("./routes/userRoute.js");
 
 // create the app
 const app = express();
@@ -34,6 +35,7 @@ const PORT = process.env.PORT || 5000;
 
 // calling routes
 app.use("/api/messages", messagesRoute);
+app.use("/api/users", userRoute);
 
 mongoose
     .connect(MONGO_URL)
