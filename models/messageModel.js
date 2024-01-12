@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 
 const messageModel = new Schema({
     content: String,
-    talkWith: String,
-    status: Boolean,
+    from: String,
+    to: String
 });
 
 const Message = mongoose.model("Message", messageModel);
