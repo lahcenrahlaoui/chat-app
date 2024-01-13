@@ -1,0 +1,228 @@
+CREATE TABLE IF NOT EXISTS messages(id integer PRIMARY KEY, content, createdat datetime DEFAULT CURRENT_TIMESTAMP, talkWithId, status);
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Add actual words", "65a2a5bc06111d8be89165b0", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Hello there!", "65a2a5bc06111d8be89165b0", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("How are you doing today?", "65a2a5bc06111d8be89165b1", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("I love coding!", "65a2a5bc06111d8be89165b2", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Do you have any plans for the weekend?", "65a2a5bc06111d8be89165b0", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Let's catch up soon!", "65a2a5bc06111d8be89165b1", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Working on a new project", "65a2a5bc06111d8be89165b2", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("How's your day going?", "65a2a5bc06111d8be89165b0", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Thinking about a weekend getaway", "65a2a5bc06111d8be89165b1", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Freemasonry", "65a2a5bc06111d8be89165b0", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("For the sake of my sanity, just ignore this...", "65a2a5bc06111d8be89165b0", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Forgot a contact page woops haha", "65a2a5bc06111d8be89165b0", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Changed things...", "65a2a5bc06111d8be89165b0", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Update .gitignore", "65a2a5bc06111d8be89165b1", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("One does not simply merge into master", "65a2a5bc06111d8be89165b1", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("This is not the commit message you are looking for", "65a2a5bc06111d8be89165b1", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Tagging release w.t.f.", "65a2a5bc06111d8be89165b1", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("One little whitespace gets its very own commit! Oh, life is so erratic!", "65a2a5bc06111d8be89165b1", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("I am 65a2a5bc06111d8be89165b5n stupider than I thought", "65a2a5bc06111d8be89165b3", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("I don't know what these changes are supposed to accomplish but somebody told me to make them.", "65a2a5bc06111d8be89165b3", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("N65a2a5bc06111d8be89165b5r gonna make you cry", "65a2a5bc06111d8be89165b3", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Implemented missing semicolon", "65a2a5bc06111d8be89165b3", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("This bunny should be killed.", "65a2a5bc06111d8be89165b3", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Someday I'm gonna kill someone for this shit...", "65a2a5bc06111d8be89165b4", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Done. Going to bed now.", "65a2a5bc06111d8be89165b4", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("I cannot beli65a2a5bc06111d8be89165b5 that it took this long to write a test for this.", "65a2a5bc06111d8be89165b4", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Removed code.", "65a2a5bc06111d8be89165b4", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Abandon all hope, ye who enter here.", "65a2a5bc06111d8be89165b4", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("I have no idea what I'm doing here.", "65a2a5bc06111d8be89165b5", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Accidental commit", "65a2a5bc06111d8be89165b5", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Only Tom Cruise knows why.", "65a2a5bc06111d8be89165b5", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Remove debug, all good", "65a2a5bc06111d8be89165b5", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Fixed bug", "65a2a5bc06111d8be89165b5", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Please no changes this time.", "65a2a5bc06111d8be89165b6", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("First blush", "65a2a5bc06111d8be89165b6", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Forgot a contact page woops haha", "65a2a5bc06111d8be89165b6", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Lots of changes after a lot of time", "65a2a5bc06111d8be89165b6", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Hey, what's up?", "65a2a5bc06111d8be89165b0", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("I tried a new recipe today!", "65a2a5bc06111d8be89165b1", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Do you enjoy reading?", "65a2a5bc06111d8be89165b2", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Just finished a great workout!", "65a2a5bc06111d8be89165b0", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Have you watched any good movies lately?", "65a2a5bc06111d8be89165b1", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Planning a weekend road trip", "65a2a5bc06111d8be89165b2", "0");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Excited about the upcoming project", "65a2a5bc06111d8be89165b0", "1");
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("What's your favorite hobby?", "65a2a5bc06111d8be89165b1", "0");
+
+
+
+
+
+
+/*
+INSERT INTO messages (content, talkWithId, status)
+VALUES (" fixed bug ", "user5", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES (" please no changes this time. ", "user6", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES (" first blush ", "user6", "0");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES (" forgot a contact page woops haha ", "user6", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES (" lots of changes after a lot of time ", "user6", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Hey, what's up?", "user1", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("I tried a new recipe today!", "user2", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Do you enjoy reading?", "user3", "0");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Just finished a great workout!", "user1", "0");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Have you watched any good movies lately?", "user2", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Planning a weekend road trip", "user3", "0");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Excited about the upcoming project", "user1", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("What's your favorite hobby?", "user2", "0");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Hello 65a2a5bc06111d8be89165b5ryone!", "user4", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Exploring new technologies", "user5", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Trying out a new coffee shop", "user6", "0");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Finished a challenging coding task", "user4", "0");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Any book recommendations?", "user5", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Weekend plans - hiking and camping", "user6", "0");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Discussing a potential collaboration", "user4", "1");
+
+
+INSERT INTO messages (content, talkWithId, status)
+VALUES ("Favorite travel destinations?", "user5", "0");
+
+
+*/

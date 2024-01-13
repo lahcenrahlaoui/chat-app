@@ -15,13 +15,11 @@ const postData = async (req, res) => {
     }
 };
 const getData = async (req, res) => {
-    const { user } = req.body;
-    console.log("user");
-    console.log(user);
+    const { userId } = req.body;
+    console.log(userId);
     try {
-        const messages = await Message.find({ from: user });
+        const messages = await Message.find({ to: userId });
 
-        console.log(messages);
         res.send({ messages });
     } catch (err) {
         console.log(err);

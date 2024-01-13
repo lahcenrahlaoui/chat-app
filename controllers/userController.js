@@ -13,13 +13,24 @@ const createUser = async (req, res) => {
         console.log(err);
     }
 };
+const findUsers = async (req, res) => {
+    console.log("req.body");
+    console.log(req.body._ids);
+    try {
+        // const users = await User.find({ _id: { $in: _ids } });
+        // const user = await User.find({ _id });
+        const user = [];
+        res.send({ user });
+    } catch (err) {
+        console.log(err);
+    }
+};
 const findUser = async (req, res) => {
-    const { phoneNumber } = req.body;
+    const { _id } = req.body;
 
     try {
-        const user = await User.find({ phoneNumber: phoneNumber });
+        const user = await User.find({ _id });
 
-        console.log(user);
         res.send({ user });
     } catch (err) {
         console.log(err);
@@ -29,4 +40,5 @@ const findUser = async (req, res) => {
 module.exports = {
     createUser,
     findUser,
+    findUsers,
 };
