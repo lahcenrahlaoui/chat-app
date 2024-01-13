@@ -14,13 +14,12 @@ const createUser = async (req, res) => {
     }
 };
 const findUsers = async (req, res) => {
-    console.log("req.body");
-    console.log(req.body._ids);
+    const { _ids } = req.query;
+
     try {
-        // const users = await User.find({ _id: { $in: _ids } });
-        // const user = await User.find({ _id });
-        const user = [];
-        res.send({ user });
+        const users = await User.find({ _id: { $in: _ids } });
+
+        res.send({ users });
     } catch (err) {
         console.log(err);
     }
