@@ -26,7 +26,7 @@ const findUsers = async (req, res) => {
     }
 };
 const findUser = async (req, res) => {
-    const { _id } = req.params;
+    const { _id } = req.query;
 
     try {
         const user = await User.find({ _id });
