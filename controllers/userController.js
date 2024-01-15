@@ -4,8 +4,7 @@ const createUser = async (req, res) => {
     const data = {
         name: req.body.name,
         phoneNumber: req.body.phoneNumber,
-    };
-    console.log(data);
+    }; 
     try {
         const user = await User.create(data);
         res.send({ user });
@@ -25,10 +24,10 @@ const findUsers = async (req, res) => {
     }
 };
 const findUser = async (req, res) => {
-    const { _id } = req.query;
+    const { phoneNumber } = req.query;
 
     try {
-        const user = await User.find({ _id });
+        const user = await User.findOne({ phoneNumber });
 
         res.send({ user });
     } catch (err) {
