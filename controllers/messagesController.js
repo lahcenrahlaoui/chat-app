@@ -20,15 +20,8 @@ const getData = async (req, res) => {
     try {
         const messages = await Message.find({ to: userId });
 
-        setInterval(() => {
-            const data = {
-                message: `hello ${new Date().toISOString()} `,
-            };
-            console.log(data);
-            res.send(JSON.stringify(data));
-        }, 1000);
-
-        // res.send({ messages });
+      
+        res.send({ messages });
     } catch (err) {
         console.log(err);
     }
