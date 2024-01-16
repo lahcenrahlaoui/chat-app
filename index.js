@@ -7,7 +7,7 @@ const cors = require("cors");
 
 /// start  this
 const http = require("http");
-const { Server } = require("socket.io");
+const Server = require("socket.io");
 // end this
 
 //files imports
@@ -19,13 +19,14 @@ const app = express();
 
 // start this
 const server = http.createServer(app);
+const corsOptions = {
+    origin: "*", // string[]
+    methods: ["GET", "POST"],
+    allowedHeaders: [],
+    credentials: true,
+};
 const io = new Server(server, {
-    cors: {
-        origin: "https://social-media-client-blue.vercel.app", // string[]
-        methods: ["GET", "POST"],
-        allowedHeaders: [],
-        credentials: true,
-    },
+    cors: corsOptions,
 });
 // end this
 
