@@ -6,7 +6,16 @@ const Data = require("./globals");
 module.exports = getIO = (server, connectedSockets) => {
     // create the app
     // @ config
-    const corsSocketIo = { origin: "*", methods: ["GET", "POST"] };
+    // const corsSocketIo = { origin: "*", methods: ["GET", "POST"] };
+
+    const corsSocketIo = {
+        cors: {
+            origin: "*",
+        },
+        serveClient: true,
+        transports: ["websocket"],
+        rejectUnauthorized: true,
+    };
 
     // @ creat the io object
     const io = IO(server, { cors: corsSocketIo });
