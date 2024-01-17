@@ -8,30 +8,32 @@ module.exports = getIO = (server, connectedSockets) => {
     // @ config
     const corsSocketIo = { origin: "*", methods: ["GET", "POST"] };
 
+    // @ creat the io object
     const io = IO(server, { cors: corsSocketIo });
-
     io.on("connection", (socket) => {
-        console.log("a user connected");
-        console.log(socket.id);
-
-        socket.on("client-to-server--join-room", (recievedData) => {
-            console.log("join a room ");
-            console.log(recievedData);
-            socket.join(recievedData.users[0]);
-            socket.join(recievedData.users[1]);
+        console.log("new user connected");
+        // @ to join in room
+        socket.on("client-to-server--join-room", (data) => {
+            const room = [data.users.user1, data.users.user2].sort().join("");
+            console.log("join a room : " + room);
+            socket.join(room);
         });
-
+        // @ to send message
         socket.on("client-to-server", (recievedData) => {
+            // @ prepare data
             const sendData = {
                 content: recievedData.data.content,
                 status: 0,
             };
-            
-            
-            const rooms = [...recievedData.users];
-            socket.to(rooms[0]).to(rooms[1]).emit("server-to-client", sendData);
+            // @ to send message to a specific room
+            const room = [recievedData.users.user1, recievedData.users.user2]
+                .sort()
+                .join("");
+            // @ send message to all users in the room
+            socket.to(room).emit("server-to-client", sendData);
         });
 
+        // ! when user disconnects from server
         socket.on("disconnect", (reason) => {
             console.log(reason);
         });

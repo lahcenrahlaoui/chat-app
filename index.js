@@ -29,11 +29,6 @@ app.use(express.static("public"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
-app.get("/", function (req, res) {
-    console.log(Object.keys(req.socket));
-    console.log(req.connection.remoteAddress);
-});
-
 if (process.env.NODE_ENV === "development") {
     app.use(cors());
 } else {
