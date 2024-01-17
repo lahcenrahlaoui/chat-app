@@ -32,13 +32,14 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 if (process.env.NODE_ENV === "development") {
     app.use(cors());
 } else {
-    app.use(
-        cors({
-            origin: "https://social-media-client-blue.vercel.app",
-            credentials: true,
-        })
-    );
-    app.set("trust proxy", 1);
+    app.use(cors());
+    // app.use(
+    //     cors({
+    //         origin: "https://social-media-client-blue.vercel.app",
+    //         credentials: true,
+    //     })
+    // );
+    // app.set("trust proxy", 1);
 }
 
 // * constants
