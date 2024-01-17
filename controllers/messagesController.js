@@ -20,12 +20,12 @@ const getData = async (req, res) => {
     try {
         const messages = await Message.find({ to: userId });
 
-      
         res.send({ messages });
     } catch (err) {
         console.log(err);
     }
 };
+
 
 module.exports = {
     postData,
