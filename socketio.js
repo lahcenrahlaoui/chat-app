@@ -21,26 +21,45 @@ module.exports = getIO = (server, connectedSockets) => {
     const io = IO(server, { cors: corsSocketIo });
     io.on("connection", (socket) => {
         console.log("new user connected");
-        // @ to join in room
-        socket.on("client-to-server--join-room", (data) => {
-            const room = [data.users.user1, data.users.user2].sort().join("");
+        // @ to join in the default room
+        socket.on("client-to-server--default-room", (data) => {
+            const room = data.currentUser;
             console.log("join a room : " + room);
             socket.join(room);
         });
+
+        // @ to join in room private room
+        socket.on("client-to-server--join-room", (data) => {
+            const room = [data.currentUser, data.chat_user].sort().join("");
+            socket.join(room);
+            
+            const users = {
+                currentUser: data.currentUser,
+                chat_user: data.chat_user,
+            };
+            socket.broadcast
+                .to(data.chat_user)
+                .emit("server-to-client--first-message", users);
+        });
+
         // @ to send message
         socket.on("client-to-server", (recievedData) => {
             // @ prepare data
             const sendData = {
                 content: recievedData.data.content,
-                status: 0,
+                room: recievedData.activeRoom,
             };
+            console.log(sendData);
             // @ to send message to a specific room
-            const room = [recievedData.users.user1, recievedData.users.user2]
-                .sort()
-                .join("");
+            const room = recievedData.activeRoom;
             // @ send message to all users in the room
-            socket.to(room).emit("server-to-client", sendData);
+
+            socket.broadcast.to(room).emit("server-to-client", sendData);
         });
+
+        /////////////////////
+        /////////////////////
+        /////////////////////
 
         // ! when user disconnects from server
         socket.on("disconnect", (reason) => {
