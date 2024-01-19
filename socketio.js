@@ -32,7 +32,7 @@ module.exports = getIO = (server, connectedSockets) => {
         socket.on("client-to-server--join-room", (data) => {
             const room = [data.currentUser, data.chat_user].sort().join("");
             socket.join(room);
-            
+
             const users = {
                 currentUser: data.currentUser,
                 chat_user: data.chat_user,
@@ -47,13 +47,14 @@ module.exports = getIO = (server, connectedSockets) => {
             // @ prepare data
             const sendData = {
                 content: recievedData.data.content,
-                room: recievedData.activeRoom,
+                createdAt: recievedData.data.createdAt,
+                room: recievedData.room,
             };
-            console.log(sendData);
-            // @ to send message to a specific room
-            const room = recievedData.activeRoom;
-            // @ send message to all users in the room
 
+            // @ to send message to a specific room
+            const room = recievedData.room;
+
+            // @ send message to all users in the room
             socket.broadcast.to(room).emit("server-to-client", sendData);
         });
 
