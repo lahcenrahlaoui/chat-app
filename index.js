@@ -19,6 +19,7 @@ const Message = require("./models/messageModel.js");
 
 // * create the app and the server
 const app = express();
+
 const server = createServer(app);
 //connect  to socket io
 // * all socket functions are inside this file
@@ -47,6 +48,10 @@ const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.PORT || 5000;
 
 // * calling routes
+app.use("/api/verify", (req, res) => {
+    const phoneNumber = req.params.phoneNumber;
+    console.log(phoneNumber);
+});
 app.use("/api/messages", messagesRoute);
 app.use("/api/users", userRoute);
 
