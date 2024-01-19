@@ -48,24 +48,21 @@ const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.PORT || 5000;
 
 // * calling routes
-app.use("/api/verify", (req, res) => {
+
+let code;
+app.post("/api/verify", (req, res) => {
     const phoneNumber = req.body.phoneNumber;
     console.log(phoneNumber);
-    const code = Math.floor(Math.random() * 999999)+"";
-    console.log("code");
-    console.log("code");
-    console.log(code);
-    console.log("code");
-    console.log("code");
-    res.locals.code = code;
+    code = Math.floor(Math.random() * 999999) + "";
+
     res.json({
         message: `Your phone number is ${phoneNumber} --- ${code}`,
     });
 });
-app.use("/api/get-verification-code", (req, res) => {
+app.post("/api/get-verification-code", (req, res) => {
     const verificationCode = req.body.code;
 
-    verificationCode === res.locals.code
+    verificationCode === code
         ? res.json({
               status: true,
           })
