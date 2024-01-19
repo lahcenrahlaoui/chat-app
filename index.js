@@ -59,7 +59,7 @@ app.use("/api/verify", (req, res) => {
     console.log("code");
     res.locals.code = code;
     res.json({
-        message: `Your phone number is ${phoneNumber}`,
+        message: `Your phone number is ${phoneNumber} --- ${code}`,
     });
 });
 app.use("/api/get-verification-code", (req, res) => {
