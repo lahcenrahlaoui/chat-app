@@ -51,10 +51,35 @@ const PORT = process.env.PORT || 5000;
 app.use("/api/verify", (req, res) => {
     const phoneNumber = req.body.phoneNumber;
     console.log(phoneNumber);
+    const code = Math.floor(Math.random() * 999999);
+    res.locals.code = code;
     res.json({
         message: `Your phone number is ${phoneNumber}`,
     });
 });
+app.use("/api/get-verification-code", (req, res) => {
+    const verificationCode = req.body.code;
+
+    verificationCode === res.locals.code
+        ? res.json({
+              status: true,
+          })
+        : res.json({
+              status: false,
+          });
+
+    // /////
+    // if (verificationCode === res.locals.code) {
+    //     res.json({
+    //         status: true,
+    //     });
+    // } else {
+    //     res.json({
+    //         status: false,
+    //     });
+    // }
+});
+
 app.use("/api/messages", messagesRoute);
 app.use("/api/users", userRoute);
 
