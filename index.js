@@ -50,7 +50,7 @@ const PORT = process.env.PORT || 5000;
 // * calling routes
 
 let code;
-app.post("/api/verify", (req, res) => {
+app.post("/api/verify", async (req, res) => {
     const phoneNumber = req.body.phoneNumber;
 
     code = Math.floor(Math.random() * 999999) + "";
@@ -63,14 +63,13 @@ app.post("/api/verify", (req, res) => {
 
     const client = require("twilio")(SMS_SID, SMS_AUTH_TOKEN);
 
-    client.messages
-        .create({
-            body: `your veridication code : ${code} `,
-            from: "+16592228202",
-            to: `+213${phoneNumber}`,
-        })
-        .then((message) => console.log(message.sid))
-        .done();
+    const x = await client.messages.create({
+        body: `your veridication code : ${code} `,
+        from: "+16592228202",
+        to: `+213${phoneNumber}`,
+    });
+    console.log(x);
+
     // ///////////////////////
 
     res.json({
