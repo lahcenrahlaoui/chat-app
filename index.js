@@ -50,18 +50,18 @@ const PORT = process.env.PORT || 5000;
 // * calling routes
 
 let code;
+SMS_SID = "AC7eda06b664df046ee518fdba67988672";
+SMS_AUTH_TOKEN = "f56bef287ded8f6ecd697a3824510b34";
+const client = require("twilio")(SMS_SID, SMS_AUTH_TOKEN);
 app.post("/api/verify", async (req, res) => {
     const phoneNumber = req.body.phoneNumber;
 
     code = Math.floor(Math.random() * 999999) + "";
 
     // ///////////////////////
-    SMS_SID = "AC7eda06b664df046ee518fdba67988672";
-    SMS_AUTH_TOKEN = "f56bef287ded8f6ecd697a3824510b34";
     // const SMS_SID = process.env.SMS_SID;
     // const SMS_AUTH_TOKEN = process.env.SMS_AUTH_TOKEN;
 
-    const client = require("twilio")(SMS_SID, SMS_AUTH_TOKEN);
 
     const x = await client.messages.create({
         body: `your veridication code : ${code} `,
