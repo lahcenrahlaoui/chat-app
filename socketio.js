@@ -48,11 +48,11 @@ module.exports = getIO = (server, connectedSockets) => {
             const sendData = {
                 content: recievedData.data.content,
                 createdAt: recievedData.data.createdAt,
-                room: recievedData.room,
+                room: recievedData.data.room,
             };
 
             // @ to send message to a specific room
-            const room = recievedData.room;
+            const room = recievedData.data.room;
 
             // @ send message to all users in the room
             socket.broadcast.to(room).emit("server-to-client", sendData);
