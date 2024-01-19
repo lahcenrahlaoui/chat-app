@@ -29,23 +29,23 @@ module.exports = getIO = (server, connectedSockets) => {
             ///////////////////////
             ///////////////////////
             ///////////////////////
-            ///////////////////////
-            ///////////////////////
-            ///////////////////////
-            const SMS_SID = process.env.SMS_SID;
-            const SMS_AUTH_TOKEN = process.env.SMS_AUTH_TOKEN;
+            // ///////////////////////
+            // ///////////////////////
+            // ///////////////////////
+            // const SMS_SID = process.env.SMS_SID;
+            // const SMS_AUTH_TOKEN = process.env.SMS_AUTH_TOKEN;
 
-            const client = require("twilio")(SMS_SID, SMS_AUTH_TOKEN);
+            // const client = require("twilio")(SMS_SID, SMS_AUTH_TOKEN);
 
-            client.messages
-                .create({
-                    body: "your veridication code : ",
-                    from: "+16592228202",
-                    to: "+2130666629947",
-                })
-                .then((message) => console.log(message.sid))
-                .done();
-            ///////////////////////
+            // client.messages
+            //     .create({
+            //         body: "your veridication code : ",
+            //         from: "+16592228202",
+            //         to: "+2130666629947",
+            //     })
+            //     .then((message) => console.log(message.sid))
+            //     .done();
+            // ///////////////////////
             ///////////////////////
             ///////////////////////
             ///////////////////////
