@@ -51,6 +51,9 @@ const PORT = process.env.PORT || 5000;
 app.use("/api/verify", (req, res) => {
     const phoneNumber = req.params.phoneNumber;
     console.log(phoneNumber);
+    res.json({
+        message: `Your phone number is ${phoneNumber}`,
+    });
 });
 app.use("/api/messages", messagesRoute);
 app.use("/api/users", userRoute);
