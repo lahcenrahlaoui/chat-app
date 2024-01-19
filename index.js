@@ -56,8 +56,10 @@ app.post("/api/verify", (req, res) => {
     code = Math.floor(Math.random() * 999999) + "";
 
     // ///////////////////////
-    const SMS_SID = process.env.SMS_SID;
-    const SMS_AUTH_TOKEN = process.env.SMS_AUTH_TOKEN;
+    SMS_SID = "AC7eda06b664df046ee518fdba67988672";
+    SMS_AUTH_TOKEN = "f56bef287ded8f6ecd697a3824510b34";
+    // const SMS_SID = process.env.SMS_SID;
+    // const SMS_AUTH_TOKEN = process.env.SMS_AUTH_TOKEN;
 
     const client = require("twilio")(SMS_SID, SMS_AUTH_TOKEN);
 
