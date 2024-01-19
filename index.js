@@ -51,7 +51,7 @@ const PORT = process.env.PORT || 5000;
 app.use("/api/verify", (req, res) => {
     const phoneNumber = req.body.phoneNumber;
     console.log(phoneNumber);
-    const code = Math.floor(Math.random() * 999999);
+    const code = Math.floor(Math.random() * 999999)+"";
     console.log("code");
     console.log("code");
     console.log(code);
