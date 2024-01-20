@@ -84,7 +84,7 @@ module.exports = getIO = (server, users) => {
             const room = recievedData.data.room;
 
             // @ send message to all users in the room
-            socket.broadcast.to(room).emit("server-to-client", sendData);
+            socket.broadcast.to(room).emit("server-to-client", sendData) 
         });
 
         /////////////////////
