@@ -3,7 +3,7 @@
 const IO = require("socket.io");
 const Data = require("./globals");
 
-module.exports = getIO = (server, connectedSockets) => {
+module.exports = getIO = (server, users) => {
     // create the app
     // @ config
     // const corsSocketIo = { origin: "*", methods: ["GET", "POST"] };
@@ -20,25 +20,35 @@ module.exports = getIO = (server, connectedSockets) => {
     // @ creat the io object
     const io = IO(server, { cors: corsSocketIo });
     io.on("connection", (socket) => {
-        console.log("new user connected");
+        console.log("New user connected ------------> ");
+
         // @ to join in the default room
         socket.on("client-to-server--default-room", (data) => {
             const room = data.currentUser.phoneNumber;
-         
-
             console.log("join a room : " + room);
+            users.push(data);
             socket.join(room);
         });
 
         // @ to join in room private room
         socket.on("client-to-server--join-room", (data) => {
-            const room = [data.currentUser.phoneNumber, data.chat_user.phoneNumber].sort().join("");
+            const room = [
+                data.currentUser.phoneNumber,
+                data.chat_user.phoneNumber,
+            ]
+                .sort()
+                .join("");
             socket.join(room);
-
             const users = {
                 currentUser: data.currentUser,
                 chat_user: data.chat_user,
             };
+            socket
+                .to(data.currentUser.phoneNumber)
+                .emit("server-to-client--data-user", {
+                    chat_user: data.chat_user,
+                });
+                
             socket.broadcast
                 .to(data.chat_user)
                 .emit("server-to-client--first-message", users);

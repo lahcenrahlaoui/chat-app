@@ -23,7 +23,6 @@ const app = express();
 const server = createServer(app);
 //connect  to socket io
 // * all socket functions are inside this file
-const connectedSockets = [];
 
 // * middlewares
 app.use(express.static("public"));
@@ -49,7 +48,6 @@ const PORT = process.env.PORT || 5000;
 
 // * calling routes
 
-
 /************************************** */
 /************************************** */
 /************************************** */
@@ -58,7 +56,7 @@ const PORT = process.env.PORT || 5000;
 /************************************** */
 /************************************** */
 
-// ! this part for verification phone number 
+// ! this part for verification phone number
 let code;
 
 // const SMS_SID = "AC7eda06b664df046ee518fdba67988672";
@@ -66,7 +64,6 @@ let code;
 // const SMS_FROM = "+16592228202";
 // const client = require("twilio")(SMS_SID, SMS_AUTH_TOKEN);
 
- 
 /************************************** */
 /************************************** */
 /************************************** */
@@ -74,6 +71,7 @@ let code;
 /************************************** */
 /************************************** */
 /************************************** */
+const users = [];
 
 app.use("/api/messages", messagesRoute);
 app.use("/api/users", userRoute);
@@ -82,7 +80,7 @@ mongoose
     .connect(MONGO_URL)
     .then(() => {
         console.log(`running server on ${PORT}`);
-        require("./socketio")(server, connectedSockets);
+        require("./socketio")(server, users);
         server.listen(PORT);
     })
     .catch((err) => {
