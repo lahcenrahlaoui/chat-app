@@ -24,38 +24,24 @@ module.exports = getIO = (server, users) => {
 
         // @ to join in the default room
         socket.on("client-to-server--default-room", (data) => {
-            console.log("*******************")
-            console.log(data)
-            console.log("*******************")
             const room = data?.currentUser?.phoneNumber;
-            console.log("room")
-            console.log("room")
-            console.log(room)
-            console.log("room")
-            console.log("room")
-            console.log("join a room the default room : " + room);
-
             socket.join(room);
+            console.log("join a room the default room : " + room);
         });
-
+        
         // @ to join in room private room
         socket.on("client-to-server--join-room", (data) => {
-            console.log("xxxxxxxxxxxxxxxxxxxxxxx")
-            console.log("xxxxxxxxxxxxxxxxxxxxxxx")
+            
+            
             socket.join(data.room);
+            console.log("join a room the sharing room : " + data.room);
             const newData = {
                 room: data.room,
-                currentUser: data.currentUser_store,
-                chat_user: data.friend,
+                friend: data.currentUser_store,
+            
             };
 
-            console.log("data");
-            console.log("data");
-            console.log("data");
-            console.log(data);
-            console.log("data");
-            console.log("data");
-            console.log("data");
+        
             // @ send to the user that we want to talk with in his private room
             socket.broadcast
                 .to(data.friend)
