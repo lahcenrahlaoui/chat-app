@@ -39,6 +39,13 @@ module.exports = getIO = (server, users) => {
                 chat_user: data.friend,
             };
 
+            console.log("data");
+            console.log("data");
+            console.log("data");
+            console.log(data);
+            console.log("data");
+            console.log("data");
+            console.log("data");
             // @ send to the user that we want to talk with in his private room
             socket.broadcast
                 .to(data.friend)
