@@ -24,12 +24,18 @@ module.exports = getIO = (server, users) => {
 
         // @ to join in the default room
         socket.on("client-to-server--default-room", (data) => {
-            console.log("xxxxxxxxxxxxxxxxxxxxxxx")
+            console.log("*******************")
             console.log(data)
-            // const room = data.currentUser.phoneNumber;
-            // console.log("join a room the default room : " + room);
+            console.log("*******************")
+            const room = data?.currentUser?.phoneNumber;
+            console.log("room")
+            console.log("room")
+            console.log(room)
+            console.log("room")
+            console.log("room")
+            console.log("join a room the default room : " + room);
 
-            // socket.join(room);
+            socket.join(room);
         });
 
         // @ to join in room private room
