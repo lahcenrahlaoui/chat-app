@@ -23,7 +23,7 @@ module.exports = getIO = (server, connectedSockets) => {
         console.log("new user connected");
         // @ to join in the default room
         socket.on("client-to-server--default-room", (data) => {
-            const room = data.currentUser;
+            const room = data.currentUser.phoneNumber;
          
 
             console.log("join a room : " + room);
@@ -32,7 +32,7 @@ module.exports = getIO = (server, connectedSockets) => {
 
         // @ to join in room private room
         socket.on("client-to-server--join-room", (data) => {
-            const room = [data.currentUser, data.chat_user].sort().join("");
+            const room = [data.currentUser.phoneNumber, data.chat_user.phoneNumber].sort().join("");
             socket.join(room);
 
             const users = {
