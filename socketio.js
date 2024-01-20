@@ -28,38 +28,48 @@ module.exports = getIO = (server, users) => {
             socket.join(room);
             console.log("join a room the default room : " + room);
         });
-        
+
         // @ to join in room private room
         socket.on("client-to-server--join-room", (data) => {
-            
-            
             socket.join(data.room);
             console.log("join a room the sharing room : " + data.room);
             const newData = {
                 room: data.room,
                 friend: data.currentUser_store,
-            
             };
 
-        
             // @ send to the user that we want to talk with in his private room
             socket.broadcast
                 .to(data.friend)
                 .emit("server-to-client--first-message", newData);
         });
-
-        // @ to send user data to other user
-        socket.on("client-to-server--user-data", (data) => {
-            const user = {
-                phoneNumber: data.current_user_store.phoneNumber,
-                name: data.current_user_store.name,
-                image: data.current_user_store.image,
+        // @ to join in room private room 2
+        socket.on("client-to-server--join-room-2", (data) => {
+            socket.join(data.room);
+            console.log("join a room the sharing room : " + data.room);
+            const newData = {
+                room: data.room,
+                friend: data.currentUser_store,
             };
 
+            // @ send to the user that we want to talk with in his private room
             socket.broadcast
-                .to(data.chat_user)
-                .emit("server-to-client--user-data-recieve", user);
+                .to(data.room)
+                .emit("server-to-client--user-data-recieve", newData);
         });
+
+        // // @ to send user data to other user
+        // socket.on("client-to-server--user-data", (data) => {
+        //     const user = {
+        //         phoneNumber: data.current_user_store.phoneNumber,
+        //         name: data.current_user_store.name,
+        //         image: data.current_user_store.image,
+        //     };
+
+        //     socket.broadcast
+        //         .to(data.chat_user)
+        //         .emit("server-to-client--user-data-recieve", user);
+        // });
 
         // @ to send message
         socket.on("client-to-server", (recievedData) => {
