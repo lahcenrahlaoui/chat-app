@@ -49,55 +49,31 @@ const PORT = process.env.PORT || 5000;
 
 // * calling routes
 
+
+/************************************** */
+/************************************** */
+/************************************** */
+/************************************** */
+/************************************** */
+/************************************** */
+/************************************** */
+
+// ! this part for verification phone number 
 let code;
-SMS_SID = "AC7eda06b664df046ee518fdba67988672";
-SMS_AUTH_TOKEN = "f56bef287ded8f6ecd697a3824510b34";
-const client = require("twilio")(SMS_SID, SMS_AUTH_TOKEN);
-app.post("/api/verify", async (req, res) => {
-    const phoneNumber = req.body.phoneNumber;
 
-    code = Math.floor(Math.random() * 999999) + "";
+// const SMS_SID = "AC7eda06b664df046ee518fdba67988672";
+// const SMS_AUTH_TOKEN = "6cbc9c9e276e7c4be3cafdbeb76bfbff";
+// const SMS_FROM = "+16592228202";
+// const client = require("twilio")(SMS_SID, SMS_AUTH_TOKEN);
 
-    // ///////////////////////
-    // const SMS_SID = process.env.SMS_SID;
-    // const SMS_AUTH_TOKEN = process.env.SMS_AUTH_TOKEN;
-
-
-    const x = await client.messages.create({
-        body: `your veridication code : ${code} `,
-        from: "+16592228202",
-        to: `+213${phoneNumber}`,
-    });
-    console.log(x);
-
-    // ///////////////////////
-
-    res.json({
-        message: `Your phone number is ${phoneNumber} --- ${code}`,
-    });
-});
-app.post("/api/get-verification-code", (req, res) => {
-    const verificationCode = req.body.code;
-
-    verificationCode === code
-        ? res.json({
-              status: true,
-          })
-        : res.json({
-              status: false,
-          });
-
-    // /////
-    // if (verificationCode === res.locals.code) {
-    //     res.json({
-    //         status: true,
-    //     });
-    // } else {
-    //     res.json({
-    //         status: false,
-    //     });
-    // }
-});
+ 
+/************************************** */
+/************************************** */
+/************************************** */
+/************************************** */
+/************************************** */
+/************************************** */
+/************************************** */
 
 app.use("/api/messages", messagesRoute);
 app.use("/api/users", userRoute);
