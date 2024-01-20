@@ -32,34 +32,31 @@ module.exports = getIO = (server, users) => {
 
         // @ to join in room private room
         socket.on("client-to-server--join-room", (data) => {
-            console.log("--------------------------------");
-            console.log("--------------------------------");
-            console.log("--------------------------------");
-
-            console.log(data);
-            console.log("--------------------------------");
-            console.log("--------------------------------");
-            console.log("--------------------------------");
-
-            const room = [
-                data.currentUser.phoneNumber,
-                data.chat_user.phoneNumber,
-            ]
+            const room = [data.current_user_store.phoneNumber, data.chat_user]
                 .sort()
                 .join("");
             socket.join(room);
             const users = {
-                currentUser: data.currentUser,
+                currentUser: data.current_user_store.phoneNumber,
                 chat_user: data.chat_user,
             };
-
-            socket
-                .to(data.currentUser.phoneNumber)
-                .emit("server-to-client--data-user", data.chat_user);
 
             socket.broadcast
                 .to(data.chat_user)
                 .emit("server-to-client--first-message", users);
+        });
+
+        // @ to send user data to other user
+        socket.on("client-to-server--user-data", (data) => {
+            const user = {
+                phoneNumber: data.current_user_store.phoneNumber,
+                name: data.current_user_store.name,
+                image: data.current_user_store.image,
+            };
+
+            socket.broadcast
+                .to(data.chat_user)
+                .emit("server-to-client--user-data-recieve", user);
         });
 
         // @ to send message
