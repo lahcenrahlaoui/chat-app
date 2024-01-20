@@ -45,10 +45,8 @@ module.exports = getIO = (server, users) => {
             };
             socket
                 .to(data.currentUser.phoneNumber)
-                .emit("server-to-client--data-user", {
-                    chat_user: data.chat_user,
-                });
-                
+                .emit("server-to-client--data-user", data.chat_user);
+
             socket.broadcast
                 .to(data.chat_user)
                 .emit("server-to-client--first-message", users);
