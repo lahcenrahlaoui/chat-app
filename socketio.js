@@ -27,13 +27,18 @@ module.exports = getIO = (server, users) => {
             const room = data?.currentUser?.phoneNumber;
             socket.join(room);
             console.log("join a room the default room : " + room);
+            users.push(socket.id);
+            console.log("------ ALL SOCKETS -------");
+            console.log("------ ALL SOCKETS -------");
+            console.log("------   -------");
+            console.log(users);
+            console.log("------   -------");
+            console.log("------ ALL SOCKETS -------");
+            console.log("------ ALL SOCKETS -------");
         });
 
         // @ to join in room private room
         socket.on("client-to-server--join-room", (data) => {
-            
-            
-            
             socket.join(data.room);
             console.log("join a room the sharing room : " + data.room);
             const newData = {
