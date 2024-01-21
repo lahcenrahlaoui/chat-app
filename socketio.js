@@ -31,6 +31,9 @@ module.exports = getIO = (server, users) => {
 
         // @ to join in room private room
         socket.on("client-to-server--join-room", (data) => {
+            
+            
+            
             socket.join(data.room);
             console.log("join a room the sharing room : " + data.room);
             const newData = {
@@ -56,11 +59,6 @@ module.exports = getIO = (server, users) => {
             socket.broadcast
                 .to(data.room)
                 .emit("server-to-client--user-data-recieve", newData);
-        });
-
-        // @ disconnect
-        socket.on("client-to-server--force-disconnect", () => {
-            socket.disconnect();
         });
 
         // // @ to send user data to other user
